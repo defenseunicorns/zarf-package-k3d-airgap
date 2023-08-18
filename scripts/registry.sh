@@ -13,8 +13,6 @@ docker tag ghcr.io/k3d-io/k3d-proxy:5.5.2 k3d-airgap.localhost:5000/k3d-io/k3d-p
 docker push k3d-airgap.localhost:5000/k3d-io/k3d-proxy:5.5.2
 docker tag ghcr.io/k3d-io/k3d-tools:5.5.2 k3d-airgap.localhost:5000/k3d-io/k3d-tools:5.5.2
 docker push k3d-airgap.localhost:5000/k3d-io/k3d-tools:5.5.2
-docker tag "###ZARF_VAR_CUSTOM_K3D_IMAGE###" k3d-airgap.localhost:5000/###ZARF_VAR_CUSTOM_K3D_IMAGE###
-docker push k3d-airgap.localhost:5000/###ZARF_VAR_CUSTOM_K3D_IMAGE###
 
 # Remove the docker.io prefix
 AIRGAP_IMAGES=$(cat k3s-images.txt | sed 's/docker.io\///')

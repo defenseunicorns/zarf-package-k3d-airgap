@@ -12,8 +12,6 @@ else
     --k3s-arg "--disable=traefik@server:*" \
     --k3s-arg "--disable=metrics-server@server:*" \
     --k3s-arg "--disable=servicelb@server:*" \
-    --image ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda \
-    --gpus=all \
     --registry-config registry.yaml \
     ${CLUSTER_NAME}
 fi

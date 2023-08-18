@@ -3,7 +3,7 @@ kind: ZarfPackageConfig
 metadata:
   name: k3d-airgap
   description: "Defense Unicorns K3D environment"
-  version: "###ZARF_PKG_TMPL_K3D_VERSION###-cuda"
+  version: "###ZARF_PKG_TMPL_K3D_VERSION###"
   # Big Bang / Iron Bank are only amd64
   architecture: amd64
   authors: "@kirankt"
@@ -15,8 +15,6 @@ variables:
     default: 5.5.2
   - name: K3S_VERSION
     default: v1.27.4+k3s1
-  - name: CUSTOM_K3D_IMAGE
-    default: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
   - name: METALLB_VERSION
     default: v0.13.10
   - name: ZARF_VERSION
@@ -42,10 +40,6 @@ components:
         - cmd: docker save ghcr.io/k3d-io/k3d-proxy:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-proxy-###ZARF_PKG_TMPL_K3D_VERSION###.tar
         - cmd: docker pull ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION###
         - cmd: docker save ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
-        - cmd: docker pull "###ZARF_PKG_TMPL_CUSTOM_K3D_IMAGE###"
-        - cmd: docker save "###ZARF_PKG_TMPL_CUSTOM_K3D_IMAGE###" -o k3s-custom.tar
-        - cmd: docker pull nvidia/k8s-device-plugin:1.11
-        - cmd: docker save nvidia/k8s-device-plugin:1.11 -o nvidia-device-plugin.tar
 - name: save-images
   required: true
   files:
@@ -55,18 +49,12 @@ components:
       target: k3d-proxy-###ZARF_PKG_TMPL_K3D_VERSION###.tar
     - source: k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
       target: k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
-    - source: k3s-custom.tar
-      target: k3s-custom.tar
-    - source: nvidia-device-plugin.tar
-      target: nvidia-device-plugin.tar
   actions:
     onDeploy:
       after:
         - cmd: docker load -i registry.tar
         - cmd: docker load -i k3d-proxy-###ZARF_PKG_TMPL_K3D_VERSION###.tar
         - cmd: docker load -i k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
-        - cmd: docker load -i k3s-custom.tar
-        - cmd: docker load -i nvidia-device-plugin.tar
         - cmd: docker load -i k3s-airgap-images-amd64.tar
 - name: registry-sync
   required: true
