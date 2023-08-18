@@ -15,8 +15,8 @@ docker tag ghcr.io/k3d-io/k3d-tools:5.5.2 k3d-airgap.localhost:5000/k3d-io/k3d-t
 docker push k3d-airgap.localhost:5000/k3d-io/k3d-tools:5.5.2
 docker tag "###ZARF_VAR_CUSTOM_K3D_IMAGE###" k3d-airgap.localhost:5000/###ZARF_VAR_CUSTOM_K3D_IMAGE###
 docker push k3d-airgap.localhost:5000/###ZARF_VAR_CUSTOM_K3D_IMAGE###
-docker tag nvidia/k8s-device-plugin k3d-airgap.localhost:5000/nvidia/k8s-device-plugin
-docker push k3d-airgap.localhost:5000/nvidia/k8s-device-plugin
+docker tag nvidia/k8s-device-plugin:1.11 k3d-airgap.localhost:5000/nvidia/k8s-device-plugin:1.11
+docker push k3d-airgap.localhost:5000/nvidia/k8s-device-plugin:1.11
 
 # Remove the docker.io prefix
 AIRGAP_IMAGES=$(cat k3s-images.txt | sed 's/docker.io\///')
