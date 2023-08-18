@@ -19,3 +19,7 @@ zarf package create --confirm
 mkdir temp && cd temp
 zarf package deploy --confirm
 ```
+
+## Limitations
+- Does not deploy Traefik, ServiceLB or Metrics-Server
+- MetalLB support is coming to replace ServiceLB
