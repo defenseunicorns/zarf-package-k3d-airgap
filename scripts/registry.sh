@@ -20,4 +20,5 @@ docker push k3d-airgap.localhost:5000/###ZARF_VAR_CUSTOM_K3D_IMAGE###
 AIRGAP_IMAGES=$(cat k3s-images.txt | sed 's/docker.io\///')
 for i in $AIRGAP_IMAGES; do
 	docker tag $i k3d-airgap.localhost:5000/$i
+	docker push k3d-airgap.localhost:5000/$i
 done
