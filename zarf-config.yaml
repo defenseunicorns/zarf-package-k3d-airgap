@@ -2,11 +2,7 @@ package:
   create: 
     set:
       zarf_version: 0.29.0
-      metallb_version: v0.13.10
       k3d_version: 5.5.2
-      k3s_version: v1.27.4+k3s1
-      custom_k3d_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
+      k3s_version: v1.27.4
+      k3s_gpu_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
     max_package_size: "1000000000"
-  deploy:
-    set:
-      custom_k3d_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda

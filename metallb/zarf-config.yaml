@@ -1,0 +1,5 @@
+package:
+  create: 
+    set:
+      metallb_version: v0.13.10
+    max_package_size: "100000000000"
