@@ -90,6 +90,9 @@ components:
     onDeploy:
       after:
         - cmd: ./registry.sh
+    onRemove:
+      after:
+        - cmd: ./registry-uninstall.sh
 - name: k3d
   required: true
   files:
