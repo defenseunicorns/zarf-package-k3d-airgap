@@ -1,0 +1,47 @@
+kind: ZarfPackageConfig
+metadata:
+  name: metallb
+  description: "Defense Unicorns MetalLB Zarf Package"
+  version: v0.13.10
+  architecture: amd64
+  authors: "@kirankt"
+  source: https://github.com/defenseunicorns/zarf-package-k3d-airgap
+  vendor: Defense Unicorns
+
+variables:
+- name: METALLB_VERSION
+  default: v0.13.10
+
+components:
+- name: metallb
+  required: true
+  images:
+    - quay.io/metallb/controller:###ZARF_PKG_TMPL_METALLB_VERSION###
+    - quay.io/metallb/speaker:###ZARF_PKG_TMPL_METALLB_VERSION###
+  charts:
+    - name: metallb
+      version: "###ZARF_PKG_TMPL_METALLB_VERSION###"
+      namespace: metallb-system
+      url: https://metallb.github.io/metallb
+      releaseName: "###ZARF_PKG_TMPL_METALLB_VERSION###"
+      valuesFiles:
+        - values.yaml
+  actions:
+    onDeploy:
+      after:
+        - wait:
+            cluster:
+              kind: deployment
+              name: "###ZARF_PKG_TMPL_METALLB_VERSION###-metallb-controller"
+              namespace: metallb-system
+              condition: available
+- name: metallb-pool
+  required: true
+  files:
+    - source: metallb.sh
+      target: metallb.sh
+      executable: true
+  actions:
+    onDeploy:
+      after:
+        - cmd: ./metallb.sh
