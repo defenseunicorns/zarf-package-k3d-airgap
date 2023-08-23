@@ -48,7 +48,6 @@ zarf init --components git-server --confirm
 cd metallb
 zarf package create --confirm
 zarf package deploy --confirm
-
 ```
 
 ## Limitations
