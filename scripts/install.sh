@@ -12,10 +12,10 @@ if [[ "###ZARF_VAR_ENABLE_SERVICE_LB###" == "false" ]]; then
 	ARGS+=" --no-lb"
 fi
 if [[ "###ZARF_VAR_ENABLE_TRAEFIK###" == "false" ]]; then
-	ARGS+=' --k3s-arg "--disable=traefik@server:*"'
+	ARGS+=" --k3s-arg --disable=traefik@server:*"
 fi
 if [[ "###ZARF_VAR_ENABLE_METRICS_SERVER###" == "false" ]]; then
-	ARGS+=' --k3s-arg "--disable=metrics-server@server:*"'
+	ARGS+=" --k3s-arg --disable=metrics-server@server:*"
 fi
 
 # Check if the cluster already exists
