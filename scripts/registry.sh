@@ -5,15 +5,19 @@
 #
 # Requires: 'docker' command.
 
+K3D=./k3d
 REGISTRY_NAME=k3d-airgap.localhost
-if ${K3D} registry list | grep -q "${REGISTRY_NAME}" | grep "running"; then
-	echo "Registry with name: ${REGISTRY_NAME} already exists. Skipping create."
-elif
-	echo "Registry with name: ${REGISTRY_NAME} exists, but unhealthy. Re-creating a new one."
-	./k3d registry delete ${REGISTRY_NAME}
+if ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ${K3D} registry list | grep -q "running"; then
+    echo "Registry with name: ${REGISTRY_NAME} already exists and is running. Skipping create."
+elif ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ! ${K3D} registry list | grep -q "running"; then
+    echo "Registry with name: ${REGISTRY_NAME} exists, but is not running. Re-creating a new one."
+    ${K3D} registry delete ${REGISTRY_NAME}
 
-	# Start a new local k3d registry
-	./k3d registry create airgap.localhost --port 5000
+    # Start a new local k3d registry
+    ${K3D} registry create airgap.localhost --port 5000
+else
+    # Start a new local k3d registry
+    ${K3D} registry create airgap.localhost --port 5000
 fi
 
 # List of current container images
