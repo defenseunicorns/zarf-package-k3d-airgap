@@ -24,11 +24,32 @@ This package supports enabling/disabling the following K3D cluster options, via 
 | GPU Support | enable_gpus | true or false | false |
 | Number of GPUs to expose| gpu_count | "all" or an integer value | "all" |
 
+### Example Deployments
 ```
 mkdir temp && cd temp
 zarf package deploy --confirm
+
+or
+
+mkdir temp && cd temp
+zarf package deploy --set enable_traefik=false --set enable_service_lb=false --set enable_metrics_server=false --set enable_gpus=true --confirm
+```
+
+## MetalLB
+
+If multiple loadbalancers are required, MetalLB support exists in this repo. Please take a look at the [metallb](metallb) directory.
+MetalLB can be added into the newly created Kubernetes cluster after `zarf init` has been run.
+
+e.g.
+
+```
+zarf tools download-init
+zarf init --components git-server --confirm
+cd metallb
+zarf package create --confirm
+zarf package deploy --confirm
+
 ```
 
 ## Limitations
-- Does not deploy Traefik, ServiceLB or Metrics-Server
-- MetalLB support is coming to replace ServiceLB
+- MetalLB must be installed after running `zarf init` in the cluster
