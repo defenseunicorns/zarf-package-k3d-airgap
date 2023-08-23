@@ -12,7 +12,7 @@
 images=$(docker images --format="{{.Repository}}:{{.Tag}}")
 
 # Define an array of domain prefixes
-domain_prefixes=("k3d-airgap.localhost:5000 ghcr.io" "nvcr.io" "docker.io" "quay.io")
+domain_prefixes=("k3d-airgap.localhost:5000" "ghcr.io" "nvcr.io" "docker.io" "quay.io")
 
 local_registry="k3d-airgap.localhost:5000"
 
