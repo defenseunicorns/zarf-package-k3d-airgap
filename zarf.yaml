@@ -3,7 +3,7 @@ kind: ZarfPackageConfig
 metadata:
   name: k3d-airgap
   description: "Defense Unicorns K3D environment"
-  version: "###ZARF_PKG_TMPL_K3D_VERSION###-cuda"
+  version: "###ZARF_PKG_TMPL_K3D_VERSION###"
   # Big Bang / Iron Bank are only amd64
   architecture: amd64
   authors: "@kirankt"
