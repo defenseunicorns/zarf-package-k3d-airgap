@@ -20,7 +20,7 @@ variables:
   - name: ZARF_VERSION
     default: 0.29.0
 
-  - name: ENABLE_GPU
+  - name: ENABLE_GPUS
     default: false
   - name: GPU_COUNT
     default: all
