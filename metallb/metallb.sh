@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CLUSTER_NAME=zarf-k3d
+CLUSTER_NAME="###ZARF_VAR_CLUSTER_NAME###"
 POOL=$(docker network inspect k3d-${CLUSTER_NAME}|jq -r .[0].IPAM.Config[0].Subnet | awk -F'.' '{print $1,$2,100}' OFS=".")
 
 cat <<__EOF__ | zarf tools kubectl apply -f -

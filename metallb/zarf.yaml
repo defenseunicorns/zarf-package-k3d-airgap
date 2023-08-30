@@ -11,6 +11,8 @@ metadata:
 variables:
 - name: METALLB_VERSION
   default: v0.13.10
+- name: CLUSTER_NAME
+  default: zarf-k3d
 
 components:
 - name: metallb
