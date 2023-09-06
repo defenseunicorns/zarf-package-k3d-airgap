@@ -9,7 +9,7 @@ if [[ "###ZARF_VAR_ENABLE_GPUS###" == "true" ]]; then
 	ARGS+=" --gpus=###ZARF_VAR_GPU_COUNT### --image=###ZARF_VAR_K3S_GPU_IMAGE###"
 fi
 if [[ "###ZARF_VAR_ENABLE_SERVICE_LB###" == "false" ]]; then
-	ARGS+=" --no-lb"
+	ARGS+=" --no-lb --disable=servicelb@server:*"
 fi
 if [[ "###ZARF_VAR_ENABLE_TRAEFIK###" == "false" ]]; then
 	ARGS+=" --k3s-arg --disable=traefik@server:*"
