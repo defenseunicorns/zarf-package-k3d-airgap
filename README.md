@@ -1,11 +1,11 @@
 # K3D with GPU support for Airgapped Environments
-Deploy k3d in an air-gapped environment with GPU support
+The goal for this project is to enable deployment of k3d in an air-gapped environment with GPU support.
 
 ## Prerequisites
 
-- Currently works and tested on Linux amd64 systems.
+- Currently works and tested on Linux amd64 systems, more specifically RHEL 9.
 - For GPU support, the NVIDIA kernel module and the `nvidia-docker2` package must be installed.
-- A newer release of [Zarf](https://github.com/defenseunicorns/zarf) is installed. Tested with 0.29.0.
+- A newwe release of [Zarf](https://github.com/defenseunicorns/zarf) is installed. Tested with 0.29.0.
 - [Docker](https://docs.docker.com/engine/install/) is installed and usable as an unprivileged user.
 
 ## Build
