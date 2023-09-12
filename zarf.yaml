@@ -53,7 +53,7 @@ components:
         - cmd: docker save ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
         - cmd: docker pull "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###"
         - cmd: docker save "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###" -o k3s-gpu.tar
-        - cmd: docker pull nvidia/k8s-device-plugin:1.11
+        - cmd: docker pull --platform linux/amd64 nvidia/k8s-device-plugin:1.11
         - cmd: docker save nvidia/k8s-device-plugin:1.11 -o nvidia-device-plugin.tar
 - name: save-images
   required: true
