@@ -43,15 +43,15 @@ components:
   actions:
     onCreate:
       after:
-        - cmd: docker pull registry:2
+        - cmd: docker pull --platform linux/amd64 registry:2
         - cmd: docker save registry:2 -o registry.tar
-        - cmd: docker pull rancher/k3s:###ZARF_PKG_TMPL_K3S_VERSION###-k3s1
+        - cmd: docker pull --platform linux/amd64 rancher/k3s:###ZARF_PKG_TMPL_K3S_VERSION###-k3s1
         - cmd: docker save rancher/k3s:###ZARF_PKG_TMPL_K3S_VERSION###-k3s1 -o k3s-###ZARF_PKG_TMPL_K3S_VERSION###.tar
-        - cmd: docker pull ghcr.io/k3d-io/k3d-proxy:###ZARF_PKG_TMPL_K3D_VERSION###
+        - cmd: docker pull --platform linux/amd64 ghcr.io/k3d-io/k3d-proxy:###ZARF_PKG_TMPL_K3D_VERSION###
         - cmd: docker save ghcr.io/k3d-io/k3d-proxy:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-proxy-###ZARF_PKG_TMPL_K3D_VERSION###.tar
-        - cmd: docker pull ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION###
+        - cmd: docker pull --platform linux/amd64 ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION###
         - cmd: docker save ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
-        - cmd: docker pull "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###"
+        - cmd: docker pull --platform linux/amd64 "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###"
         - cmd: docker save "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###" -o k3s-gpu.tar
         - cmd: docker pull --platform linux/amd64 nvidia/k8s-device-plugin:1.11
         - cmd: docker save nvidia/k8s-device-plugin:1.11 -o nvidia-device-plugin.tar
