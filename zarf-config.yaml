@@ -6,3 +6,6 @@ package:
       k3s_version: v1.27.4
       k3s_gpu_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
     max_package_size: "1000000000"
+  deploy:
+    set:
+      approved_registries: "127.0.0.1* | registry1.dso.mil* | registry.dso.mil* | k3d-airgap.localhost* | nvcr.io/nvidia* | gchr.io/defenseunicorns* | semitechnologies/* | ghcr.io/runyontr*"
