@@ -8,4 +8,4 @@ package:
     max_package_size: "1000000000"
   deploy:
     set:
-      approved_registries: "127.0.0.1* | registry1.dso.mil* | registry.dso.mil* | k3d-airgap.localhost* | nvcr.io/nvidia* | docker.io/semitechnologies* | ghcr.io/defenseunicorns* | semitechnologies/* | ghcr.io/runyontr*"
+      approved_registries: "k3d-airgap.localhost* | nvcr.io/nvidia/k8s-device-plugin* | nvcr.io/nvidia/k8s/dcgm-exporter* | docker.io/semitechnologies/weaviate* | ghcr.io/defenseunicorns/leapfrogai* | quay.io/metallb/controller* | quay.io/metallb/speaker*"
