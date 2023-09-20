@@ -52,6 +52,9 @@ zarf package deploy oci://ghcr.io/defenseunicorns/packages/dubbd-k3d:0.7.0-amd64
 ## End Dubbd Install
 ## Wait for promtail to finish building
 
+R1_USERNAME="Michael_Amick"
+read -s -p "Enter Password for $R1_USERNAME: " R1_PASSWORD
+
 # You have to preposture sidecar pull or login to registry1 to prevent failure
 docker login registry1.dso.mil -u $R1_USERNAME -p $R1_PASSWORD 
 git clone https://github.com/defenseunicorns/leapfrogai.git
