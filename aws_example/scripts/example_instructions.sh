@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTANCE_NAME="MikeA-instance" # Match this to your instance name from Terraform
+INSTANCE_NAME="" # Match this to your instance name from Terraform
 # ensure you're authenticated via AWS vault or other means to your AWS account
 EC2_URL=$(aws ec2 describe-instances --region us-gov-west-1 --filter "Name=tag:Name,Values=$INSTANCE_NAME" --query 'Reservations[].Instances[].PublicDnsName' --output text)
 
@@ -52,7 +52,7 @@ zarf package deploy oci://ghcr.io/defenseunicorns/packages/dubbd-k3d:0.7.0-amd64
 ## End Dubbd Install
 ## Wait for promtail to finish building
 
-R1_USERNAME="Michael_Amick"
+R1_USERNAME="" #imput username for registry1.dso.mil
 read -s -p "Enter Password for $R1_USERNAME: " R1_PASSWORD
 
 # You have to preposture sidecar pull or login to registry1 to prevent failure
