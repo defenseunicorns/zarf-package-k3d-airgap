@@ -3,19 +3,19 @@
 INSTANCE_NAME="" # Match this to your instance name from Terraform
 # ensure you're authenticated via AWS vault or other means to your AWS account
 EC2_URL=$(aws ec2 describe-instances --region us-gov-west-1 --filter "Name=tag:Name,Values=$INSTANCE_NAME" --query 'Reservations[].Instances[].PublicDnsName' --output text)
-
+PEM="" # Match this to your pem file name
 
 # Transfer files to ec2 instance, connect to ec2 instance, and run 
 # ec2_prep_final.sh three times validating that the script executes without 
 # executing actions
-scp -i "MikeA-Kp.pem" scripts/ec2_prep_final.sh ec2-user@$EC2_URL:/home/ec2-user
-ssh -i "MikeA-KP.pem" ec2-user@$EC2_URL
+scp -i "$PEM" scripts/ec2_prep_final.sh ec2-user@$EC2_URL:/home/ec2-user
+ssh -i "$PEM" ec2-user@$EC2_URL
 chmod +x /home/ec2-user/ec2_prep_final.sh
 ./ec2_prep_final.sh
 ./ec2_prep_final.sh
 ./ec2_prep_final.sh # Shouldn't reboot the system
 
-scp -i "MikeA-Kp.pem" zarf-config.yaml ec2-user@$EC2_URL:/home/ec2-user/clusterOne
+scp -i "$PEM" zarf-config.yaml ec2-user@$EC2_URL:/home/ec2-user/clusterOne
 
 # Working directory for cluster deployment
 cd clusterOne
