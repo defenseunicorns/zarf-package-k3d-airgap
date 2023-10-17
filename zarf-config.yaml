@@ -1,11 +1,7 @@
 package:
   create: 
     set:
-      zarf_version: 0.29.0
       k3d_version: 5.5.2
       k3s_version: v1.27.4
       k3s_gpu_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
     max_package_size: "1000000000"
-  deploy:
-    set:
-      approved_registries: "k3d-airgap.localhost* | nvcr.io/nvidia/k8s-device-plugin* | nvcr.io/nvidia/k8s/dcgm-exporter* | docker.io/semitechnologies/weaviate* | docker.io/semitechnologies/transformers-inference* | ghcr.io/defenseunicorns/leapfrogai* | quay.io/metallb/controller* | quay.io/metallb/speaker*"

@@ -7,6 +7,7 @@
 
 K3D=./k3d
 REGISTRY_NAME=k3d-airgap.localhost
+REGISTRY_PORT=###ZARF_VAR_K3D_REGISTRY_PORT###
 if ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ${K3D} registry list | grep -q "running"; then
     echo "Registry with name: ${REGISTRY_NAME} already exists and is running. Skipping create."
 elif ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ! ${K3D} registry list | grep -q "running"; then
@@ -14,19 +15,19 @@ elif ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ! ${K3D} registry list
     ${K3D} registry delete ${REGISTRY_NAME}
 
     # Start a new local k3d registry
-    ${K3D} registry create airgap.localhost --port 5000
+    ${K3D} registry create airgap.localhost --port ${REGISTRY_PORT}} 
 else
     # Start a new local k3d registry
-    ${K3D} registry create airgap.localhost --port 5000
+    ${K3D} registry create airgap.localhost --port ${REGISTRY_PORT} 
 fi
 
 # List of current container images
 images=$(docker images --format="{{.Repository}}:{{.Tag}}")
 
 # Define an array of domain prefixes
-domain_prefixes=("k3d-airgap.localhost:5000" "ghcr.io" "nvcr.io" "docker.io" "quay.io")
+domain_prefixes=("k3d-airgap.localhost:${REGISTRY_PORT}" "ghcr.io" "nvcr.io" "docker.io" "quay.io")
 
-local_registry="k3d-airgap.localhost:5000"
+local_registry="k3d-airgap.localhost:${REGISTRY_PORT}"
 
 for image in $images; do
 	# Iterate through the domain prefixes and strip out the matching one

@@ -10,16 +10,16 @@ metadata:
   source: https://github.com/defenseunicorns/zarf-package-k3d
   vendor: Defense Unicorns
 
-variables:
+constants:
   - name: K3D_VERSION
-    default: 5.5.2
+    value: "###ZARF_PKG_TMPL_K3D_VERSION###"
   - name: K3S_VERSION
-    default: v1.27.4
+    value: "###ZARF_PKG_TMPL_K3S_VERSION###"
   - name: K3S_GPU_IMAGE
-    default: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
-  - name: ZARF_VERSION
-    default: 0.29.0
+    value: "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###"
 
+
+variables:
   - name: ENABLE_GPUS
     default: false
   - name: GPU_COUNT
@@ -30,6 +30,8 @@ variables:
     default: true
   - name: ENABLE_METRICS_SERVER
     default: true
+  - name: K3D_REGISTRY_PORT
+    default: 5000
 
 components:
 - name: download-assets
