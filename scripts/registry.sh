@@ -15,7 +15,7 @@ elif ${K3D} registry list | grep -q "${REGISTRY_NAME}" && ! ${K3D} registry list
     ${K3D} registry delete ${REGISTRY_NAME}
 
     # Start a new local k3d registry
-    ${K3D} registry create airgap.localhost --port ${REGISTRY_PORT}} 
+    ${K3D} registry create airgap.localhost --port ${REGISTRY_PORT}
 else
     # Start a new local k3d registry
     ${K3D} registry create airgap.localhost --port ${REGISTRY_PORT} 
