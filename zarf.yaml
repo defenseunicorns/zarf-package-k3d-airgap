@@ -21,17 +21,17 @@ constants:
 
 variables:
   - name: ENABLE_GPUS
-    default: false
+    default: "false"
   - name: GPU_COUNT
-    default: all
+    default: "all"
   - name: ENABLE_SERVICE_LB
-    default: true
+    default: "true"
   - name: ENABLE_TRAEFIK
-    default: true
+    default: "true"
   - name: ENABLE_METRICS_SERVER
-    default: true
+    default: "true"
   - name: K3D_REGISTRY_PORT
-    default: 5000
+    default: "5000"
 
 components:
 - name: download-assets
@@ -110,6 +110,9 @@ components:
     onDeploy:
       after:
         - cmd: ./install.sh
+
+        # This configmap creates issues when trying to execute `zarf init`
+        - cmd: ./zarf tools kubectl delete configmap local-registry-hosting -n kube-public
     onRemove:
       after:
         - cmd: ./uninstall.sh
