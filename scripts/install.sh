@@ -6,7 +6,7 @@ K3D=./k3d
 ARGS="--registry-use k3d-airgap.localhost:###ZARF_VAR_K3D_REGISTRY_PORT### --registry-config registry.yaml"
 
 if [[ "###ZARF_VAR_ENABLE_GPUS###" == "true" ]]; then
-	ARGS+=" --gpus=###ZARF_VAR_GPU_COUNT### --image=###ZARF_VAR_K3S_GPU_IMAGE###"
+	ARGS+=" --gpus=###ZARF_VAR_GPU_COUNT### --image=###ZARF_CONST_K3S_GPU_IMAGE###"
 fi
 if [[ "###ZARF_VAR_ENABLE_SERVICE_LB###" == "false" ]]; then
 	ARGS+=" --no-lb --k3s-arg --disable=servicelb@server:*"
