@@ -55,8 +55,6 @@ components:
         - cmd: docker save ghcr.io/k3d-io/k3d-tools:###ZARF_PKG_TMPL_K3D_VERSION### -o k3d-tools-###ZARF_PKG_TMPL_K3D_VERSION###.tar
         - cmd: docker pull --platform linux/amd64 "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###"
         - cmd: docker save "###ZARF_PKG_TMPL_K3S_GPU_IMAGE###" -o k3s-gpu.tar
-        - cmd: docker pull --platform linux/amd64 nvidia/k8s-device-plugin:1.11
-        - cmd: docker save nvidia/k8s-device-plugin:1.11 -o nvidia-device-plugin.tar
 - name: save-images
   required: true
   files:
@@ -70,8 +68,6 @@ components:
       target: k3d-tools.tar
     - source: k3s-gpu.tar
       target: k3s-gpu.tar
-    - source: nvidia-device-plugin.tar
-      target: nvidia-device-plugin.tar
   actions:
     onDeploy:
       after:
@@ -80,7 +76,6 @@ components:
         - cmd: docker load -i k3d-proxy.tar
         - cmd: docker load -i k3d-tools.tar
         - cmd: docker load -i k3s-gpu.tar
-        - cmd: docker load -i nvidia-device-plugin.tar
         - cmd: docker load -i k3s-airgap-images-amd64.tar
 - name: registry-sync
   required: true
