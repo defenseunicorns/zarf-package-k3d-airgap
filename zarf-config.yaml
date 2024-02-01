@@ -1,7 +1,7 @@
 package:
   create: 
     set:
-      k3d_version: 5.5.2
-      k3s_version: v1.27.4
-      k3s_gpu_image: ghcr.io/runyontr/packages/rancher/k3s:v1.27.2-k3s1-cuda
+      k3d_version: 5.6.0
+      k3s_version: v1.27.9
+      k3s_gpu_image: ghcr.io/justinthelaw/k3d-gpu-support:v1.27.4-k3s1-cuda
     max_package_size: "1000000000"
